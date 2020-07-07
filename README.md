@@ -15,6 +15,12 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDZkZefm6iJVMWaO7hBMKmnJCTxzN4u8Svg3IvTkVbR
 
 3. Add contents of `id_rsa` as repository/org secret `SECRET_PRIVATE_DEPLOY_KEY`
 
+```
+-----BEGIN OPENSSH PRIVATE KEY-----
+snip ;-)
+-----END OPENSSH PRIVATE KEY-----
+```
+
 4. Install SSH key in workflow step
 
 ```
