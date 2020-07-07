@@ -1,0 +1,14 @@
+on:
+  push:
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: |
+        mkdir ~/.ssh
+        echo "${{ secrets.SECRET_PRIVATE_DEPLOY_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+    - run: npm install jcansdale/private-npm-package#1.0.2 # install the package
+    - run: npx jcansdale/private-npm-package#1.0.2         # execute the package
