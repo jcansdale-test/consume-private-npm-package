@@ -1,10 +1,17 @@
 # consume-private-npm-package
 Consume a private npm package
 
-1. Generate public/private rsa key pair
+1. Generate public/private rsa key pair (save key to `./id_rsa` with no passphrase)
 
 ```
-ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+$ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+
+Generating public/private rsa key pair.
+Enter file in which to save the key (/Users/jcansdale/.ssh/id_rsa): ./id_rsa
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in ./id_rsa.
+Your public key has been saved in ./id_rsa.pub.
 ```
 
 2. Go to Repository > Settings > Deploy keys and use contents of `id_rsa.pub` to add a deploy key
