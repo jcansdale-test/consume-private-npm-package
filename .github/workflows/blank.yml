@@ -7,4 +7,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: npm install jcansdale/private-npm-package#semver:^1.0 # install the package using semver
-    - run: npx jcansdale/private-npm-package#1.0.2               # execute the package
+    - run: npx ${{ secrets.PAT }}@jcansdale/private-npm-package#1.0.2               # execute the package
