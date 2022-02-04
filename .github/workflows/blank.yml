@@ -5,6 +5,5 @@ jobs:
   install:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
     - run: npm i https://foo:${{ secrets.PAT }}@github.com/jcansdale/private-npm-package
     - run: npx jcansdale/private-npm-package#1.0.2               # execute the package
