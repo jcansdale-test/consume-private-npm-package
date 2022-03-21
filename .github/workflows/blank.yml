@@ -13,9 +13,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+
     - run: |
         mkdir ~/.ssh
         echo "${{ secrets.SECRET_PRIVATE_DEPLOY_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
+
+    - run: |
+        echo "Host github.com-id_rsa" > ~/.ssh/config
+        echo "        Hostname github.com" >> ~/.ssh/config
+        echo "        IdentityFile=~/.ssh/id_rsa" >> ~/.ssh/config
+        chmod 600 ~/.ssh/config
+        
     - run: npm install ${{ matrix.url }}#semver:^1.0 # install the package using semver
     - run: npx ${{ matrix.url }}#1.0.2               # execute the package
