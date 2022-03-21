@@ -25,7 +25,6 @@ jobs:
         echo "Host github.com-id_rsa_x" > ~/.ssh/config
         echo "        Hostname github.com" >> ~/.ssh/config
         echo "        IdentityFile=~/.ssh/id_rsa_x" >> ~/.ssh/config
-        chmod 600 ~/.ssh/config
         
     - run: npm install ${{ matrix.url }}#semver:^1.0 # install the package using semver
     - run: npx ${{ matrix.url }}#1.0.2               # execute the package
