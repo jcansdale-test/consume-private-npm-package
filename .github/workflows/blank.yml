@@ -7,7 +7,7 @@ jobs:
 
     strategy:
       matrix:
-        url: ["jcansdale/private-npm-package", "git@github.com:jcansdale/private-npm-package", "git@github.com-id_rsa:jcansdale/private-npm-package"]
+        url: ["jcansdale/private-npm-package", "git@github.com:jcansdale/private-npm-package", "git@github.com-id_rsa_x:jcansdale/private-npm-package"]
       fail-fast: false
 
     runs-on: ubuntu-latest
@@ -20,7 +20,9 @@ jobs:
         chmod 600 ~/.ssh/id_rsa
 
     - run: |
-        echo "Host github.com-id_rsa" > ~/.ssh/config
+        echo "${{ secrets.SECRET_PRIVATE_DEPLOY_KEY }}" > ~/.ssh/id_rsa_x
+        chmod 600 ~/.ssh/id_rsa_x
+        echo "Host github.com-id_rsa_x" > ~/.ssh/config
         echo "        Hostname github.com" >> ~/.ssh/config
         echo "        IdentityFile=~/.ssh/id_rsa_x" >> ~/.ssh/config
         chmod 600 ~/.ssh/config
