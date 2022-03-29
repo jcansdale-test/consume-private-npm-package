@@ -27,4 +27,7 @@ jobs:
         echo "        IdentityFile=~/.ssh/id_rsa_x" >> ~/.ssh/config
         
     - run: npm install ${{ matrix.url }}#semver:^1.0 # install the package using semver
+
+    - run: ls
+
     - run: npx ${{ matrix.url }}#1.0.2               # execute the package
