@@ -35,4 +35,6 @@ jobs:
 
     - run: npm install
 
+    - run: ls -l node_modules/@jcansdale
+
     - run: npx ${{ matrix.url }}#1.0.2               # execute the package
