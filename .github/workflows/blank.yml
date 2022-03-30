@@ -33,4 +33,6 @@ jobs:
               }
             }' > package.json
 
+    - run: npm install
+
     - run: npx ${{ matrix.url }}#1.0.2               # execute the package
