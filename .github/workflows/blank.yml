@@ -28,8 +28,10 @@ jobs:
         
     - run: npm install ${{ matrix.url }}#semver:^1.0 # install the package using semver
 
+    - run: ls
     - run: ls node_modules
     - run: ls node_modules/@jcansdale
     - run: ls node_modules/@jcansdale/private-npm-package
+    - run: cat package.json
 
     - run: npx ${{ matrix.url }}#1.0.2               # execute the package
