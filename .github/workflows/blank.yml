@@ -37,4 +37,6 @@ jobs:
 
     - run: ls -l node_modules/@jcansdale/private-npm-package
 
+    - run: tree node_modules
+
     - run: npx ${{ matrix.url }}#1.0.2               # execute the package
