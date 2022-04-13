@@ -7,7 +7,7 @@ jobs:
 
     strategy:
       matrix:
-        url: ["jcansdale/private-npm-package", "git@github.com/jcansdale/private-npm-package", "git@github.com:jcansdale/private-npm-package", "git@github.com-id_rsa_x:jcansdale/private-npm-package"]
+        url: ["jcansdale/private-npm-package", "git@github.com:jcansdale/private-npm-package", "git@github.com-id_rsa_x:jcansdale/private-npm-package"]
       fail-fast: false
 
     runs-on: ubuntu-latest
