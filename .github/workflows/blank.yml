@@ -26,7 +26,7 @@ jobs:
         echo "        Hostname github.com" >> ~/.ssh/config
         echo "        IdentityFile=~/.ssh/id_rsa_x" >> ~/.ssh/config
 
-    - run: npx ${{ matrix.url }}#semver:^1.0
+    - run: npx ${{ matrix.url }}#1.0.2
 
     - run: |
             echo '{
