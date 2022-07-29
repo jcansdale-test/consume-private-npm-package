@@ -29,12 +29,12 @@ jobs:
         echo "        Hostname github.com" >> ~/.ssh/config
         echo "        IdentityFile=~/.ssh/id_rsa_x" >> ~/.ssh/config
 
-    - run: npx ${{ matrix.url }}#1.0.5
+    - run: npx ${{ matrix.url }}#1.0.2
 
     - run: |
             echo '{
               "dependencies": {
-                "@jcansdale/private-npm-package": "${{ matrix.url }}#1.0.5"
+                "@jcansdale/private-npm-package": "${{ matrix.url }}#1.0.2"
               }
             }' > package.json
 
