@@ -34,7 +34,7 @@ jobs:
     - run: |
             echo '{
               "dependencies": {
-                "@jcansdale/private-npm-package": "${{ matrix.url }}#semver:^1.0"
+                "@jcansdale/private-npm-package": "${{ matrix.url }}#1.0.5"
               }
             }' > package.json
 
