@@ -2,14 +2,48 @@ on:
   push:
   workflow_dispatch:
 
+env:
+  PAT: ${{ secrets.PAT }}
+
 jobs:
   install:
+
+    strategy:
+      matrix:
+        url: ["git+https://${PAT}:x-oauth-basic@github.com/jcansdale/private-npm-package", "jcansdale/private-npm-package", "git@github.com:jcansdale/private-npm-package", "git@github.com-id_rsa_x:jcansdale/private-npm-package", "git+ssh://git@github.com-id_rsa_x:jcansdale/private-npm-package"]
+      fail-fast: false
+
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+
     - run: |
         mkdir ~/.ssh
         echo "${{ secrets.SECRET_PRIVATE_DEPLOY_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-    - run: npm install jcansdale/private-npm-package#semver:^1.0 # install the package using semver
-    - run: npx jcansdale/private-npm-package#1.0.2               # execute the package
+
+    - run: |
+        echo "${{ secrets.SECRET_PRIVATE_DEPLOY_KEY }}" > ~/.ssh/id_rsa_x
+        chmod 600 ~/.ssh/id_rsa_x
+        echo "Host github.com-id_rsa_x" > ~/.ssh/config
+        echo "        Hostname github.com" >> ~/.ssh/config
+        echo "        IdentityFile=~/.ssh/id_rsa_x" >> ~/.ssh/config
+
+    - run: npx ${{ matrix.url }}#1.0.2
+
+    - run: |
+            echo '{
+              "dependencies": {
+                "@jcansdale/private-npm-package": "${{ matrix.url }}#1.0.5"
+              }
+            }' > package.json
+
+    - run: npm install
+
+    - run: ls -l node_modules/@jcansdale/private-npm-package
+
+    - run: tree node_modules
+
+    - run: |
+            echo 'require("@jcansdale/private-npm-package")()' > test.js
+            node test.js
